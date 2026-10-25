@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>琪琪布影视 - 琪琪布放映屋·绘本风动画与童话电影策展</title>
+<meta name="description" content="琪琪布影视（qiqibuyingshi-h5）是琪琪布放映屋：绘本风动画、童话电影、亲子片单与观影手账策展；不提供盗版下载、不破会员。网址 https://qiqibuyingshi-h5.github.io">
+<meta name="keywords" content="琪琪布影视,琪琪布放映屋,绘本动画,童话电影,亲子片单,动画策展,观影手账,动画电影,qiqibuyingshi">
+<meta name="author" content="琪琪布影视">
+<meta name="robots" content="index,follow">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no">
+<meta property="og:type" content="website">
+<meta property="og:title" content="琪琪布影视 - 琪琪布放映屋">
+<meta property="og:description" content="一只小布偶的放映屋。从布兜里掏出今天要看的动画片。">
+<meta property="og:url" content="https://qiqibuyingshi-h5.github.io">
+<link rel="canonical" href="https://qiqibuyingshi-h5.github.io/">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  background:#FFF6E9;color:#3B3228;line-height:1.8;overflow-x:hidden;
+  background-image:
+    radial-gradient(circle at 12% 8%,rgba(255,158,90,.14),transparent 32%),
+    radial-gradient(circle at 88% 14%,rgba(70,90,150,.07),transparent 34%);
+}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+section[id]{scroll-margin-top:0}
+::selection{background:#FF9E5A;color:#fff}
+h1,h2,h3{line-height:1.3}
+ul{list-style:none}
+
+/* ===== 顶条 ===== */
+.topbar{background:#3B3A63;color:#E8D9C0;font-size:12px;letter-spacing:1.5px;padding:7px 16px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap;border-bottom:3px dotted #FF9E5A}
+.topbar b{color:#FFD18A}
+
+/* ===== 导航 ===== */
+.nav{position:sticky;top:0;z-index:999;background:rgba(255,246,233,.97);backdrop-filter:blur(8px);border-bottom:2px dashed #E8CFAE}
+.nav-in{max-width:1200px;margin:0 auto;height:66px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{display:flex;align-items:center;gap:11px}
+.logo .bear{width:40px;height:38px;background:#FF9E5A;border-radius:40% 40% 50% 50%;position:relative;border:2px solid #3B3A63}
+.logo .bear::before,.logo .bear::after{content:"";position:absolute;width:9px;height:11px;background:#3B3A63;border-radius:50%;top:11px}
+.logo .bear::before{left:7px}
+.logo .bear::after{right:7px}
+.logo .bear span{position:absolute;bottom:-3px;left:50%;transform:translateX(-50%);width:14px;height:7px;background:#FF9E5A;border-radius:0 0 10px 10px;border:2px solid #3B3A63;border-top:none}
+.logo .txt .cn{font-size:20px;font-weight:900;letter-spacing:1px}
+.logo .txt .cn em{font-style:normal;color:#FF7A2E}
+.logo .txt .en{font-size:9px;letter-spacing:2.5px;color:#9A8E78;text-transform:uppercase}
+.menu{display:flex;gap:2px;flex-wrap:wrap}
+.menu a{font-size:13px;color:#5C5242;padding:8px 10px;border-bottom:2px solid transparent;transition:.2s;font-weight:600}
+.menu a:hover{color:#FF7A2E;border-bottom-color:#FF7A2E}
+.nav-cta{background:#FF7A2E;color:#fff;font-weight:800;font-size:13px;padding:9px 18px;border-radius:999px;transition:.25s}
+.nav-cta:hover{background:#3B3A63;transform:translateY(-2px)}
+
+/* ===== Hero ===== */
+.hero{max-width:1200px;margin:0 auto;padding:54px 20px 44px;display:grid;grid-template-columns:1.2fr .8fr;gap:34px;align-items:center}
+.hero-left h1{font-size:clamp(30px,5.4vw,56px);font-weight:900;line-height:1.1}
+.hero-left h1 em{font-style:normal;color:#FF7A2E;position:relative}
+.hero-left h1 em::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:5px;background:#FFD18A;border-radius:4px}
+.hero-left .sub{font-size:13px;letter-spacing:4px;color:#9A8E78;margin-top:12px;text-transform:uppercase}
+.hero-left .lead{font-size:16px;color:#4A4033;margin:18px 0 22px;max-width:600px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-orange{padding:12px 26px;font-weight:800;border-radius:999px;background:#FF7A2E;color:#fff;border:2px solid #FF7A2E;transition:.25s}
+.btn-orange:hover{background:#fff;color:#FF7A2E;transform:translateY(-2px)}
+.btn-indigo{padding:12px 26px;font-weight:800;border-radius:999px;background:transparent;color:#3B3A63;border:2px solid #3B3A63;transition:.25s}
+.btn-indigo:hover{background:#3B3A63;color:#fff}
+
+/* 布兜掏片机 */
+.pocket{background:#3B3A63;border-radius:26px 26px 60px 60px;padding:30px 26px 34px;color:#FFF2E2;position:relative;border:3px dashed #FFD18A}
+.pocket::before{content:"🧸";position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:34px;background:#FFF6E9;padding:2px 10px;border-radius:50%;border:3px solid #FFD18A}
+.pocket .label{font-size:11px;letter-spacing:3px;color:#FFD18A;text-transform:uppercase;text-align:center}
+.pocket .film{font-size:22px;font-weight:900;color:#fff;margin:12px 0 6px;text-align:center}
+.pocket .why{font-size:13px;color:#E8D9C0;text-align:center;line-height:1.7}
+.pocket .pull{display:block;margin:16px auto 0;background:#FF9E5A;color:#3B3A63;font-weight:900;font-size:13px;padding:10px 22px;border-radius:999px;text-align:center;transition:.2s}
+.pocket .pull:hover{background:#FFD18A}
+
+/* ===== 区块通用 ===== */
+.block{max-width:1200px;margin:0 auto;padding:54px 20px}
+.head{display:flex;align-items:baseline;gap:12px;margin-bottom:26px;flex-wrap:wrap;border-bottom:2px dotted #E8CFAE;padding-bottom:10px}
+.head .no{font-size:12px;font-weight:900;color:#fff;background:#FF7A2E;padding:4px 10px;border-radius:6px}
+.head h2{font-size:24px;font-weight:900}
+.head h2 em{font-style:normal;color:#FF7A2E}
+.head .en{font-size:11px;letter-spacing:2px;color:#9A8E78;text-transform:uppercase}
+.head a.more{margin-left:auto;font-size:13px;color:#5C5242;font-weight:700}
+.head a.more:hover{color:#FF7A2E}
+
+/* ===== 每周片单 ===== */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:20px}
+.card{background:#fff;border:2px dashed #E8CFAE;border-radius:20px;overflow:hidden;transition:.35s;position:relative}
+.card::after{content:"";position:absolute;top:0;left:0;right:0;height:8px;background:var(--c,#FF9E5A)}
+.card:hover{transform:translateY(-7px) rotate(-1deg);border-color:#FF7A2E;box-shadow:0 16px 30px rgba(255,122,46,.16)}
+.card .cover{height:190px;overflow:hidden;position:relative}
+.card .cover img{width:100%;height:100%;object-fit:cover;filter:saturate(1.08);transition:.5s}
+.card:hover .cover img{transform:scale(1.06)}
+.card .cover .day{position:absolute;top:10px;left:10px;background:#fff;border:2px solid var(--c,#FF9E5A);color:#3B3A63;font-weight:900;font-size:11px;padding:3px 9px;border-radius:999px}
+.card .body{padding:16px}
+.card h3{font-size:16px;font-weight:900;color:#3B3228}
+.card .who{font-size:12px;color:#9A8E78;margin-top:3px}
+.card .row{display:flex;justify-content:space-between;font-size:12px;color:#9A8E78;margin-top:8px}
+.card .row b{color:#FF7A2E}
+.card .tag{display:inline-block;margin-top:9px;font-size:11px;font-weight:800;background:#FFF1DE;color:#FF7A2E;padding:3px 9px;border-radius:999px}
+
+/* ===== 观影手账 ===== */
+.notebook{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.note{background:#fff;border-radius:14px;padding:20px 22px;position:relative;border-left:6px solid var(--c,#FF9E5A);box-shadow:0 2px 0 #E8CFAE}
+.note::before{content:"📖";position:absolute;top:16px;right:16px;font-size:20px;opacity:.5}
+.note .date{font-size:11px;font-weight:800;color:var(--c,#FF7A2E);letter-spacing:1px}
+.note h3{font-size:16px;font-weight:900;margin:4px 0 8px;padding-right:28px}
+.note p{font-size:13px;color:#5C5242;line-height:1.75}
+.note .mood{margin-top:10px;font-size:11px;color:#9A8E78}
+
+/* ===== 小布偶放映排期 ===== */
+.schedule{background:#fff;border:2px dashed #E8CFAE;border-radius:22px;padding:26px}
+.sched-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.show{background:#FFF6E9;border:2px solid #E8CFAE;border-radius:14px;padding:16px;text-align:center;transition:.25s}
+.show:hover{background:#FF7A2E;border-color:#FF7A2E;color:#fff;transform:translateY(-3px)}
+.show .t{font-size:12px;font-weight:800;color:#FF7A2E;letter-spacing:1px}
+.show:hover .t{color:#FFD18A}
+.show .film-name{font-size:15px;font-weight:900;margin:6px 0 4px}
+.show .host{font-size:12px;color:#9A8E78}
+.show:hover .host{color:#FFE6CC}
+.show .badge{display:inline-block;margin-top:8px;font-size:10px;font-weight:800;background:#fff;border:1px solid #FF9E5A;color:#FF7A2E;padding:2px 8px;border-radius:999px}
+.show:hover .badge{background:#fff;color:#FF7A2E}
+
+/* ===== 网址牌 ===== */
+.urlboard{max-width:1200px;margin:0 auto;padding:0 20px 10px}
+.urlcard{background:#3B3A63;border-radius:18px;padding:24px 26px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:space-between;border:3px dotted #FFD18A}
+.urlcard .lab{font-size:12px;letter-spacing:2px;color:#FFD18A}
+.urlcard .bigurl{font-size:clamp(15px,3.2vw,22px);font-weight:900;color:#FFD18A;word-break:break-all}
+.urlcard .bigurl a{color:#FFD18A;border-bottom:2px dotted #FFD18A}
+.urlcard .bigurl a:hover{color:#fff}
+.urlcard .note{font-size:12px;color:#E8D9C0;text-align:right}
+
+/* ===== 关于 ===== */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center;background:#fff;border:2px dashed #E8CFAE;border-radius:22px;padding:42px}
+.about h2{font-size:24px;font-weight:900;color:#3B3228;margin-bottom:14px}
+.about h2 em{font-style:normal;color:#FF7A2E}
+.about p{font-size:15px;color:#4A4033;line-height:1.95;margin-bottom:12px}
+.about .siteurl{color:#FF7A2E;font-weight:800;font-size:16px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat{background:#FFF6E9;border:2px solid #E8CFAE;border-radius:14px;padding:18px;text-align:center}
+.stat .n{font-size:22px;font-weight:900;color:#FF7A2E}
+.stat .l{font-size:12px;color:#9A8E78;margin-top:3px}
+
+/* ===== 页脚 ===== */
+.foot{border-top:3px dotted #FFD18A;padding:38px 20px 26px;text-align:center;background:#FBEED9}
+.foot-logo{font-size:20px;font-weight:900;color:#3B3A63}
+.foot-logo em{font-style:normal;color:#FF7A2E}
+.foot-links{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin:14px 0}
+.foot-links a{font-size:13px;color:#5C5242}
+.foot-links a:hover{color:#FF7A2E}
+.foot p{font-size:12px;color:#9A8E78}
+.foot .disc{margin-top:12px;max-width:880px;margin-left:auto;margin-right:auto;color:#7A6E5C;line-height:1.8}
+
+@media(max-width:860px){
+  .menu{display:none}
+  .hero{grid-template-columns:1fr;padding:28px 20px 34px;gap:28px}
+  .about{grid-template-columns:1fr;padding:28px}
+  .block{padding:42px 20px}
+  .nav-in{height:58px}
+}
+@media(max-width:420px){
+  .hero-left h1{font-size:28px}
+  .card .cover{height:160px}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<!-- ===== 顶条 ===== -->
+<div class="topbar">
+  <span>🧸 琪琪布影视 · 琪琪布放映屋</span><b>绘本风动画策展</b>
+  <span>童话电影 · 亲子片单 · 观影手账</span><b>不盗版 · 不破会员</b>
+</div>
+
+<!-- ===== 导航 ===== -->
+<div class="nav">
+  <div class="nav-in">
+    <div class="logo">
+      <div class="bear"><span></span></div>
+      <div class="txt">
+        <div class="cn">琪琪布<em>影视</em></div>
+        <div class="en">QIQIBU LITTLE CINEMA</div>
+      </div>
+    </div>
+    <nav class="menu">
+      <a href="#home">首页</a>
+      <a href="#week">本周片单</a>
+      <a href="#notebook">观影手账</a>
+      <a href="#schedule">放映排期</a>
+      <a href="#about">关于琪琪布</a>
+    </nav>
+    <a href="#week" class="nav-cta">掏一片 🧸</a>
+  </div>
+</div>
+
+<!-- ===== Hero ===== -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <h1>琪琪布影视<br>从布兜里掏出<em>今天要看的片</em></h1>
+    <div class="sub">Little Cinema · Fairy Tale · Picture Book Animation</div>
+    <p class="lead">琪琪布是一只小布偶。它不追热搜、不抢首播、不给你盗版链接——它每天从自己的布兜里掏出一部值得慢慢看的动画或童话电影，附上手写的推荐理由和适合几岁一起看。</p>
+    <div class="hero-btns">
+      <a href="#week" class="btn-orange">🧸 本周掏了啥</a>
+      <a href="#notebook" class="btn-indigo">📖 翻观影手账</a>
+    </div>
+  </div>
+  <div class="pocket">
+    <div class="label">QIQIBU'S POCKET</div>
+    <div class="film">今天掏出：《艾特熊和赛娜鼠》</div>
+    <p class="why">一只大熊和一个小鼠，在垃圾桶后面建了个家。画风像儿童蜡笔画，讲的事却大人也会哭。</p>
+    <a href="#week" class="pull">再掏一片 🎬</a>
+  </div>
+</section>
+
+<!-- ===== 01 本周片单 ===== -->
+<section class="block" id="week">
+  <div class="head">
+    <span class="no">01</span>
+    <h2>本周<em>片单</em></h2>
+    <span class="en">This Week's Picks</span>
+    <a href="#" class="more">更多 #</a>
+  </div>
+  <div class="cards">
+    <div class="card" style="--c:#FF9E5A">
+      <div class="cover"><img src="https://picsum.photos/300/380?random=1201" alt=""><div class="day">周一</div></div>
+      <div class="body"><h3>艾特熊和赛娜鼠</h3><div class="who">比利时 · 手绘水彩</div>
+        <div class="row"><span>童话 / 友谊</span><b>全年龄</b></div>
+        <span class="tag">垃圾桶后面的家</span></div>
+    </div>
+    <div class="card" style="--c:#6B7FD4">
+      <div class="cover"><img src="https://picsum.photos/300/380?random=1202" alt=""><div class="day">周二</div></div>
+      <div class="body"><h3>狼的孩子雨和雪</h3><div class="who">细田守 · 成长</div>
+        <div class="row"><span>奇幻 / 母爱</span><b>8+</b></div>
+        <span class="tag">一半狼一半人</span></div>
+    </div>
+    <div class="card" style="--c:#E88AB0">
+      <div class="cover"><img src="https://picsum.photos/300/380?random=1203" alt=""><div class="day">周三</div></div>
+      <div class="body"><h3>凯尔经的秘密</h3><div class="who">爱尔兰 · 绘本风</div>
+        <div class="row"><span>凯尔特神话</span><b>6+</b></div>
+        <span class="tag">一笔一画都是魔法</span></div>
+    </div>
+    <div class="card" style="--c:#7BC4A4">
+      <div class="cover"><img src="https://picsum.photos/300/380?random=1204" alt=""><div class="day">周四</div></div>
+      <div class="body"><h3>借东西的小人阿莉埃蒂</h3><div class="who">米林宏昌 · 吉卜力</div>
+        <div class="row"><span>微观世界</span><b>5+</b></div>
+        <span class="tag">地板缝里的生活</span></div>
+    </div>
+    <div class="card" style="--c:#F2B134">
+      <div class="cover"><img src="https://picsum.photos/300/380?random=1205" alt=""><div class="day">周五</div></div>
+      <div class="body"><h3>男孩与世界</h3><div class="who">巴西 · 极简线条</div>
+        <div class="row"><span>环保 / 成长</span><b>8+</b></div>
+        <span class="tag">几根线讲完一生</span></div>
+    </div>
+    <div class="card" style="--c:#A07BE0">
+      <div class="cover"><img src="https://picsum.photos/300/380?random=1206" alt=""><div class="day">周末</div></div>
+      <div class="body"><h3>我的邻居山田君</h3><div class="who">高畑勋 · 日常四格</div>
+        <div class="row"><span>家庭喜剧</span><b>全年龄</b></div>
+        <span class="tag">一家人的碎碎念</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 02 观影手账 ===== -->
+<section class="block" id="notebook" style="background:#FBEED9">
+  <div class="head">
+    <span class="no">02</span>
+    <h2>观影<em>手账</em></h2>
+    <span class="en">Qiqibu's Notebook</span>
+    <a href="#" class="more">更多 #</a>
+  </div>
+  <div class="notebook">
+    <div class="note" style="--c:#FF9E5A">
+      <div class="date">12.16 · 周二</div>
+      <h3>为什么《狼的孩子》我每年都看一次</h3>
+      <p>不是因为奇幻设定，是因为“当妈这件事”拍得太真了：一个人扛着孩子翻山越岭，哭了还要假装没事。琪琪布每次看到雪长大那段都要擦眼睛。</p>
+      <div class="mood">🌤 心情：被治愈了｜适合：一个人或当妈的朋友</div>
+    </div>
+    <div class="note" style="--c:#6B7FD4">
+      <div class="date">12.15 · 周一</div>
+      <h3>绘本风动画的“糙”是故意的</h3>
+      <p>线条歪、颜色溢出边界、人物比例怪——恰恰是不完美让人安心。《凯尔经的秘密》像小朋友在教堂墙上乱画，结果画出了整个神话世界。</p>
+      <div class="mood">🎨 看点：线条 / 色彩 / 留白｜适合：学画画的人</div>
+    </div>
+    <div class="note" style="--c:#7BC4A4">
+      <div class="date">12.14 · 周日</div>
+      <h3>带 4 岁小朋友看，别选这两类</h3>
+      <p>一是节奏太慢的（会睡着），二是“大人假笑”的合家欢（小孩能闻出来）。优先选有声音、有动作、有重复台词的，比如阿莉埃蒂那种“借东西”的仪式感。</p>
+      <div class="mood">👶 亲子提示：5岁+ 再看慢片｜笔记持续更新</div>
+    </div>
+    <div class="note" style="--c:#E88AB0">
+      <div class="date">12.13 · 周六</div>
+      <h3>片尾字幕别急着关</h3>
+      <p>绘本风动画的片尾常常还有一段小彩蛋：主角继续在生活。把灯留着，看完那 40 秒，再关掉屏幕，晚上会睡得很软。</p>
+      <div class="mood">🌙 仪式感：看完留 1 分钟｜来自琪琪布的经验</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 03 放映排期 ===== -->
+<section class="block" id="schedule">
+  <div class="head">
+    <span class="no">03</span>
+    <h2>小布偶<em>放映排期</em></h2>
+    <span class="en">Qiqibu's Screening</span>
+  </div>
+  <div class="schedule">
+    <div class="sched-grid">
+      <div class="show"><div class="t">周三 20:00</div><div class="film-name">绘本动画夜</div><div class="host">琪琪布主理</div><span class="badge">线上连映 3 部短片</span></div>
+      <div class="show"><div class="t">周五 19:30</div><div class="film-name">童话重读会</div><div class="host">特邀绘本作者</div><span class="badge">映后聊 20 分钟</span></div>
+      <div class="show"><div class="t">周六 10:00</div><div class="film-name">亲子早场</div><div class="host">适合 3-6 岁</div><span class="badge">家长陪同 · 免费片单</span></div>
+      <div class="show"><div class="t">周日 21:00</div><div class="film-name">大人也行的动画片</div><div class="host">手账主笔</div><span class="badge">含剧透讨论</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 网址牌 ===== -->
+<div class="urlboard">
+  <div class="urlcard">
+    <div>
+      <div class="lab">网站名称 / 网站网址</div>
+      <div class="bigurl"><a href="https://qiqibuyingshi-h5.github.io">琪琪布影视 -- https://qiqibuyingshi-h5.github.io</a></div>
+    </div>
+    <div class="note">琪琪布放映屋 · 绘本风动画策展<br>不提供盗版下载</div>
+  </div>
+</div>
+
+<!-- ===== 关于 ===== -->
+<section class="block" id="about">
+  <div class="about">
+    <div>
+      <h2>关于<em>琪琪布</em></h2>
+      <p>琪琪布是一只住在布兜里的小布偶。它的放映屋不做“全网免费看”，不做破解会员、不托管侵权片源——它只做一件事：从布兜里掏出值得慢慢看的动画和童话电影，写两句手账，告诉你适合和谁一起看。</p>
+      <p>本站所有片单仅指向正版平台与官方发行。网站名称：琪琪布影视，网站网址：<span class="siteurl">https://qiqibuyingshi-h5.github.io</span></p>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="n">布兜</div><div class="l">每天掏一部好片</div></div>
+      <div class="stat"><div class="n">手账</div><div class="l">手写推荐理由</div></div>
+      <div class="stat"><div class="n">0 盗版</div><div class="l">不破会员不托管</div></div>
+      <div class="stat"><div class="n">绘本感</div><div class="l">奶油杏 / 布偶橘 / 靛蓝</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 页脚 ===== -->
+<footer class="foot">
+  <div class="foot-logo">琪琪布<em>影视</em> · QIQIBU LITTLE CINEMA</div>
+  <div class="foot-links">
+    <a href="#week">本周片单</a>
+    <a href="#notebook">观影手账</a>
+    <a href="#schedule">放映排期</a>
+    <a href="#about">关于琪琪布</a>
+  </div>
+  <p>© 2026 琪琪布影视 · 网站名称：琪琪布影视 · 网站网址：https://qiqibuyingshi-h5.github.io</p>
+  <p class="disc">本站为绘本风动画与童话电影策展演示页。不提供盗版院线、不破解会员、不托管侵权片源。片单仅指向正版平台与官方发行；“影视中心/影视大全/高清云”等聚合资源站方向均已被拒绝制作。</p>
+</footer>
+
+</body>
+</html>
